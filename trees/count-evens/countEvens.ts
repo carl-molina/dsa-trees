@@ -4,7 +4,20 @@ import { TreeNodeNum } from "../common/tree";
  * children, count how many nodes have even values. Returns that count as
  * an integer. */
 function countEvens(node: TreeNodeNum): number {
-  return 42;
+  if (!node) return 0;
+  if (node.children.length === 0) {
+    if (node.val % 2 === 0) return 1;
+    else return 0;
+  }
+
+  let countEvenChildrenAndCurr = 0;
+  if (node.val % 2 === 0) countEvenChildrenAndCurr++;
+
+  for (let c of node.children) {
+    countEvenChildrenAndCurr += countEvens(c);
+    }
+
+  return countEvenChildrenAndCurr;
 }
 
 export { countEvens };
