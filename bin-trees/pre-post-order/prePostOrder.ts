@@ -28,7 +28,22 @@ function preOrder(node: BNodeNum | null): number[] {
  * Returns an array of visited nodes. */
 
 function postOrder(node: BNodeNum | null): number[] {
-  return [42];
+  
+  if (!node) return [];
+  if (!node.lnode && !node.rnode) return [node.val];
+
+  let nums: number[] = [];
+
+  if (node.lnode) {
+    nums.push(...postOrder(node.lnode));
+  }
+  
+  if (node.rnode) {
+    nums.push(...postOrder(node.rnode));
+  }
+ 
+  nums.push(node.val);
+  return nums;
 }
 
 export { preOrder, postOrder };
