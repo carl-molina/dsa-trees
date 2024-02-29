@@ -12,7 +12,7 @@ function preOrder(node: TreeNodeNum | null): number[] {
   for (const c of node.children) {
     nums = nums.concat(preOrder(c));
   }
-  
+
   return nums;
 }
 
@@ -21,7 +21,19 @@ function preOrder(node: TreeNodeNum | null): number[] {
  * Returns an array of visited nodes. */
 
 function postOrder(node: TreeNodeNum | null): number[] {
-  return [42];
+
+  if (!node) return [];
+  if (node.children.length === 0) return [node.val];
+
+  let nums: number[] = [];
+
+  for (const c of node.children) {
+    nums = nums.concat(postOrder(c));
+  }
+
+  nums = nums.concat([node.val]);
+
+  return nums;
 }
 
-export { preOrder, postOrder }; 
+export { preOrder, postOrder };
