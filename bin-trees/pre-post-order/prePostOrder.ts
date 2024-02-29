@@ -4,7 +4,23 @@ import { BNodeNum } from "../common/bintree";
  * Returns an array of visited nodes. */
 
 function preOrder(node: BNodeNum | null): number[] {
-  return [42];
+
+  if (!node) return [];
+  if (!node.lnode && !node.rnode) return [node.val];
+
+  let nums: number[] = [];
+
+  nums.push(node.val);
+
+  if (node.lnode) {
+    nums.push(...preOrder(node.lnode));
+  }
+
+  if (node.rnode) {
+    nums.push(...preOrder(node.rnode));
+  }
+
+  return nums;
 }
 
 
