@@ -21,7 +21,6 @@ function preOrder(node: TreeNodeNum | null): number[] {
  * Returns an array of visited nodes. */
 
 function postOrder(node: TreeNodeNum | null): number[] {
-
   if (!node) return [];
   if (node.children.length === 0) return [node.val];
 
